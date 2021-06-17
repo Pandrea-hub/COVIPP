@@ -73,10 +73,10 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'covid',
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'lu47a7l7u6ezwo8n',
+        'HOST': 'tvcpw8tpu4jvgnnq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        'USER': 'pzxcjlj9i4z1vtxq',
+        'PASSWORD': 'u1o17ivciogz739b',
         'PORT': 3306,
     }
 }
