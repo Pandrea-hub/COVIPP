@@ -29,6 +29,12 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 import re
 
 
+def home(request):
+    template = "home.html"
+    context = {}
+    return render(request, template, context)
+
+
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))

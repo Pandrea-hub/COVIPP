@@ -7,6 +7,7 @@ from rest_framework.documentation import include_docs_urls
 from rest_framework import routers
 from django.conf.urls.static import static
 from models.person.serializers import CustomAuthToken, CustomAuthLogout
+from models.person.views import home
 
 router = routers.DefaultRouter()
 
@@ -35,6 +36,7 @@ urlpatterns += [
     url(r'^api/v1/', include('models.rol.urls')),
     url(r'^api/v1/', include('models.type_place.urls')),
     url(r'^api/v1/', include('models.vaccine.urls')),
+    url(r'^', home,name="home"),
 ]
 
 urlpatterns += router.urls
