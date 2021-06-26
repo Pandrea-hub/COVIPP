@@ -8,7 +8,6 @@ from .serializers import ListInformationSerializer, CompleteInformationListSeria
 from .models import CompleteInformationView
 
 
-@permission_classes([AllowAny])
 class ListInformationList(generics.ListCreateAPIView):  # GET AND POST
     queryset = ListInformation.objects.all()
     serializer_class = ListInformationSerializer
@@ -22,7 +21,7 @@ class ListInformationList(generics.ListCreateAPIView):  # GET AND POST
         return obj
 
 
-@permission_classes([AllowAny])
+
 class ListInformationDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ListInformation.objects.all()
     serializer_class = ListInformationSerializer

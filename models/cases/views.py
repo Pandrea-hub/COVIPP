@@ -7,7 +7,7 @@ from .models import Cases, CasesSymptomView, CasesContagionView
 from .serializers import CasesSerializer,CasesByContagionSerializer,CasesBySymptomSerializer
 
 
-@permission_classes([AllowAny])
+
 class CasesBySymptom(generics.ListAPIView):
     serializer_class = CasesBySymptomSerializer
 
@@ -16,7 +16,7 @@ class CasesBySymptom(generics.ListAPIView):
         return CasesSymptomView.objects.filter(id=person_id).distinct()
 
 
-@permission_classes([AllowAny])
+
 class CasesByContagion(generics.ListAPIView):
     serializer_class = CasesByContagionSerializer
     def get_queryset(self):
@@ -52,7 +52,7 @@ class CasesByContagionType(generics.ListCreateAPIView):  # Crea un JOIN entre ca
             return Cases.objects.filter(contagion_type=contagion_type_id).distinct()
 
 
-@permission_classes([AllowAny])
+
 class CasesList(generics.ListCreateAPIView):  # GET AND POST
     queryset = Cases.objects.all()
     serializer_class = CasesSerializer
@@ -66,7 +66,7 @@ class CasesList(generics.ListCreateAPIView):  # GET AND POST
         return obj
 
 
-@permission_classes([AllowAny])
+
 class CasesDetail(generics.RetrieveUpdateDestroyAPIView):  # TRAER MAS A DETALLE Y HACER PUT AND DELETE
     queryset = Cases.objects.all()
     serializer_class = CasesSerializer

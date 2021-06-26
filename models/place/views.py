@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Place
 from .serializers import PlaceSerializer
 
-
+@permission_classes([AllowAny])
 class PlaceByPlaceType(generics.ListCreateAPIView):
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
@@ -20,7 +20,7 @@ class PlaceByPlaceType(generics.ListCreateAPIView):
             return Place.objects.filter(type_place=type_place_id).distinct()
 
 
-
+@permission_classes([AllowAny])
 class PlaceList(generics.ListCreateAPIView):  # GET AND POST
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
@@ -33,7 +33,7 @@ class PlaceList(generics.ListCreateAPIView):  # GET AND POST
         )
         return obj
 
-
+@permission_classes([AllowAny])
 class PlaceDetail(generics.RetrieveUpdateDestroyAPIView):  # TRAER MAS A DETALLE Y HACER PUT AND DELETE
     queryset = Place.objects.all()  # Trae todos los objetos de place
     serializer_class = PlaceSerializer

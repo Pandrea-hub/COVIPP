@@ -6,9 +6,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import TypePlace
 from .serializers import TypePlaceSerializer
 
-
-
-
+@permission_classes([AllowAny])
 class TypePlaceList(generics.ListCreateAPIView):
     queryset = TypePlace.objects.all()
     serializer_class = TypePlaceSerializer
@@ -21,7 +19,7 @@ class TypePlaceList(generics.ListCreateAPIView):
         )
         return obj
 
-
+@permission_classes([AllowAny])
 class TypePlaceDetail(generics.RetrieveUpdateDestroyAPIView):  # TRAER MAS A DETALLE Y HACER PUT AND DELETE
     queryset = TypePlace.objects.all()
     serializer_class = TypePlaceSerializer
