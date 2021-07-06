@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Person, Rol, Gender
+from .models import Person,Rol, Gender
+
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
@@ -78,7 +79,8 @@ class CustomAuthToken(ObtainAuthToken):
                 'last_name': user.last_name,
                 'rol': person.rol_id,
                 'gender': person.gender_id,
-                'birth_date': person.birth_date
+                'birth_date': person.birth_date,
+                'last_login':user.last_login,
             })
         return Response({
             'Error': 400

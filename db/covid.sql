@@ -56,6 +56,7 @@ CREATE VIEW vw_list_information AS
 SELECT
   DISTINCT
     LT.id AS id,
+    PR.user_id AS user_id;
     V.days AS days,
     LT.date AS first_dose_date,
     DATE_ADD(LT.date ,INTERVAL 21 DAY) AS second_dose_date,
