@@ -3,8 +3,8 @@ from rest_framework import generics
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404
-from .models import Cases, CasesSymptomView, CasesContagionView, CaseByPersonView
-from .serializers import CasesSerializer, CasesByContagionSerializer, CasesBySymptomSerializer, CaseByPersonSerializer
+from .models import Cases, CasesSymptomView, CasesContagionView
+from .serializers import CasesSerializer, CasesByContagionSerializer, CasesBySymptomSerializer
 
 
 class CasesBySymptom(generics.ListAPIView):
