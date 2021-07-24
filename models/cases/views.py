@@ -15,47 +15,25 @@ class CasesBySymptom(generics.ListAPIView):
         return CasesSymptomView.objects.filter(id=person_id).distinct()
 
 
-
-
 class CasesByContagion(generics.ListAPIView):
     serializer_class = CasesByContagionSerializer
+
     def get_queryset(self):
         person_id = self.kwargs['person_id']
         return CasesContagionView.objects.filter(id=person_id).distinct()
 
 
-
-
-
-class CaseByPerson(generics.ListCreateAPIView):
-    serializer_class = CaseByPersonSerializer
-    def get_queryset(self):
-        case_id = self.kwargs['id']
-
-        if 'person_id' in self.kwargs:
-            person_id =self.kwargs['person_id']
-            return CaseByPersonView.object.filter(id=case_id,person_id=person_id).distinct()
-        else:
-            return CaseByPersonView.object.filter(id=case_id).distinct()
-
-
-
-
-
-
 class CasesByPerson(generics.ListCreateAPIView):
-   queryset = Cases.objects.all()
-   serializer_class = CasesSerializer
+    queryset = Cases.objects.all()
+    serializer_class = CasesSerializer
 
-   def get_queryset(self):
-       person_id = self.kwargs['person_id']
-       if 'cases_id' in self.kwargs:
-           cases_id = self.kwargs['cases_id']
-           return Cases.objects.filter(person=person_id, pk=cases_id).distinct()
-       else:
-           return Cases.objects.filter(person=person_id).distinct()
-
-
+    def get_queryset(self):
+        person_id = self.kwargs['person_id']
+        if 'cases_id' in self.kwargs:
+            cases_id = self.kwargs['cases_id']
+            return Cases.objects.filter(person=person_id, pk=cases_id).distinct()
+        else:
+            return Cases.objects.filter(person=person_id).distinct()
 
 
 class CasesByContagionType(generics.ListCreateAPIView):  # Crea un JOIN entre cases y contagion type
@@ -71,8 +49,6 @@ class CasesByContagionType(generics.ListCreateAPIView):  # Crea un JOIN entre ca
             return Cases.objects.filter(contagion_type=contagion_type_id).distinct()
 
 
-
-
 class CasesList(generics.ListCreateAPIView):  # GET AND POST
     queryset = Cases.objects.all()
     serializer_class = CasesSerializer
@@ -84,7 +60,6 @@ class CasesList(generics.ListCreateAPIView):  # GET AND POST
             pk=self.kwargs['pk'],
         )
         return obj
-
 
 
 class CasesDetail(generics.RetrieveUpdateDestroyAPIView):  # TRAER MAS A DETALLE Y HACER PUT AND DELETE

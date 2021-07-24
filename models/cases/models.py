@@ -55,16 +55,3 @@ class CasesContagionView(models.Model):
         db_table = 'vw_contagion_cases'
         ordering = ('id',)
 
-
-
-class CaseByPersonView(models.Model):
-    person_id = models.IntegerField()
-    contagion_type = models.IntegerField()
-
-    def __str__(self):
-        return '%s: %s' % (self.person_id,self.contagion_type)
-
-    class Meta:
-        managed =False
-        db_table = 'vw_case_by_person'
-        ordering =  ('id',)

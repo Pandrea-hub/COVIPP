@@ -43,11 +43,3 @@ class CasesByContagionSerializer(serializers.ModelSerializer):
             'last_name'
         )
 
-class CaseByPersonSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CaseByPersonView
-        fields = (
-            'id',
-            'person_id',
-            'contagion_type'
-        )
