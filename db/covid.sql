@@ -76,10 +76,12 @@ FROM
   JOIN gender_gender AS G ON G.id = PR.gender_id
 
 
+
 CREATE VIEW vw_symptom_cases AS
 SELECT
     DISTINCT
         PS.user_id AS id,
+        CS.id AS case_id,
         CS.date AS first_day,
         DATE_SUB(CS.date, INTERVAL 6 DAY) AS contagion_day,
         DATE_ADD(CS.date,INTERVAL 8 DAY) AS not_contagion_day,
@@ -93,17 +95,20 @@ WHERE CS.contagion_type_id = 1
 
 
 
+
+
 CREATE VIEW  vw_contagion_cases AS
 SELECT
     DISTINCT
         PE.user_id AS id,
+        CA.id AS case_id,
         CA.date AS firsts_day,
         DATE_ADD(CS.date, INTERVAL 4 DAY) AS infectious_day,
         DATE_ADD(CS.date,INTERVAL 6 DAY) AS symptom_day,
         DATE_ADD(CS.date, INTERVAL 13 DAY) AS not_infectious_day,
         DATE_ADD(CS.date, INTERVAL 26 DAY) AS free_covid,
         UR.first_name AS first_name,
-        UR.last_name AS last_name
+        UR.last_name AS last_name,
 FROM cases_cases AS CA
     JOIN person_person AS PE ON PE.user_id = CA.person_id
     JOIN auth_user AS UR ON UR.id = PE.user_id
@@ -111,14 +116,11 @@ WHERE CA.contagion_type_id = 2
 
 
 
-'id',
-'days',
-'first_dose_date',
-'second_dose_date',
-'first_name',
-'last_name',
-'age',
-'vaccine_name',
-'number_doses',
-'applied_doses',
-'name_place'
+CREATE VIEW vw_case_by_person AS
+SELECT
+    DISTINCT
+        CS.id AS id,
+        PN.user_id AS person_id,
+        CS.contagion_type_id AS contagion_type,
+FROM cases_cases AS CS
+    JOIN person_person AS PN ON PN.user_id = CS.person_id

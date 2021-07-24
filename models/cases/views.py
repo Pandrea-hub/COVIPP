@@ -3,9 +3,8 @@ from rest_framework import generics
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404
-from .models import Cases, CasesSymptomView, CasesContagionView
-from .serializers import CasesSerializer,CasesByContagionSerializer,CasesBySymptomSerializer
-
+from .models import Cases, CasesSymptomView, CasesContagionView, CaseByPersonView
+from .serializers import CasesSerializer, CasesByContagionSerializer, CasesBySymptomSerializer, CaseByPersonSerializer
 
 
 class CasesBySymptom(generics.ListAPIView):
@@ -17,11 +16,30 @@ class CasesBySymptom(generics.ListAPIView):
 
 
 
+
 class CasesByContagion(generics.ListAPIView):
     serializer_class = CasesByContagionSerializer
     def get_queryset(self):
         person_id = self.kwargs['person_id']
         return CasesContagionView.objects.filter(id=person_id).distinct()
+
+
+
+
+
+class CaseByPerson(generics.ListCreateAPIView):
+    serializer_class = CaseByPersonSerializer
+    def get_queryset(self):
+        case_id = self.kwargs['id']
+
+        if 'person_id' in self.kwargs:
+            person_id =self.kwargs['person_id']
+            return CaseByPersonView.object.filter(id=case_id,person_id=person_id).distinct()
+        else:
+            return CaseByPersonView.object.filter(id=case_id).distinct()
+
+
+
 
 
 
@@ -39,6 +57,7 @@ class CasesByPerson(generics.ListCreateAPIView):
 
 
 
+
 class CasesByContagionType(generics.ListCreateAPIView):  # Crea un JOIN entre cases y contagion type
     queryset = Cases.objects.all()
     serializer_class = CasesSerializer
@@ -50,6 +69,7 @@ class CasesByContagionType(generics.ListCreateAPIView):  # Crea un JOIN entre ca
             return Cases.objects.filter(contagion_type=contagion_type_id, pk=cases_id).distinct()
         else:
             return Cases.objects.filter(contagion_type=contagion_type_id).distinct()
+
 
 
 

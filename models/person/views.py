@@ -1,28 +1,22 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
 from rest_framework import generics
 from .models import Person, Rol, User
 from .serializers import PersonSerializer
-from django.shortcuts import get_object_or_404
 from validate_email import validate_email
 from rest_framework import serializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, AllowAny
-import django.contrib.auth.password_validation as validators
 from django.contrib.auth import password_validation
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.conf import settings
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.utils.encoding import force_bytes, force_text
 from django.core.mail import EmailMessage
-from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -117,6 +111,18 @@ class PersonView(APIView):
 
         if not request.data.get('birth_date'):
             raise serializers.ValidationError({"Error no hay una fecha de nacimiento": 115})
+
+        if not request.data.get('first_name'):
+            raise serializers.ValidationError({"Error no hay nombres":116})
+
+        if not request.data.get('last_name'):
+            raise serializers.ValidationError({"Error no hay apellidos":117})
+
+        if not request.data.get('password1'):
+            raise serializers.ValidationError({"Error no existe la contraseña": 120})
+
+        if not request.data.get('email'):
+            raise serializers.ValidationError({"Error no hay un email": 118})
 
         if data['password1'] != data['password2']:
             raise serializers.ValidationError({"Error la contraseña no coincide": 112})
