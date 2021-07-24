@@ -1,4 +1,4 @@
-from .models import Cases, CasesSymptomView, CasesContagionView,CaseByPerson
+from .models import Cases, CasesSymptomView, CasesContagionView,CaseByPersonView
 from rest_framework import serializers
 
 
@@ -45,7 +45,7 @@ class CasesByContagionSerializer(serializers.ModelSerializer):
 
 class CaseByPersonSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CaseByPerson
+        model = CaseByPersonView
         fields = (
             'id',
             'person_id',
