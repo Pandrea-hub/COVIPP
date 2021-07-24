@@ -1,8 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from models.cases.views import CasesList, CasesDetail, CasesByContagionType, CasesByPerson,CasesBySymptom,CasesByContagion
-
-from covid.models.cases.views import CaseByPerson
+from models.cases.views import CasesList, CasesDetail, CasesByContagionType, CasesByPerson,CasesBySymptom,CasesByContagion, CaseByPerson
 
 urlpatterns = [
     url(r'^cases/$', CasesList.as_view(), name='cases'),
