@@ -25,9 +25,9 @@ class CaseContagionByPersonAndCase(generics.ListCreateAPIView):
 
     def get_queryset(self):
         person_id = self.kwargs['person_id']
-        if 'case_id' in self.kwargs:
+        if 'cases_id' in self.kwargs:
             case_id = self.kwargs['case_id']
-            return Cases.objects.filter(person=person_id, pk=case_id).distinct()
+            return Cases.objects.filter(person=person_id, pk=cases_id).distinct()
         else:
             return Cases.objects.filter(person=person_id).distinct()
 

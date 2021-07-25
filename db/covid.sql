@@ -81,7 +81,7 @@ CREATE VIEW vw_symptom_cases AS
 SELECT
     DISTINCT
         PS.user_id AS id,
-        CS.id AS case_id,
+        CS.id AS cases_id,
         CS.date AS first_day,
         DATE_SUB(CS.date, INTERVAL 6 DAY) AS contagion_day,
         DATE_ADD(CS.date,INTERVAL 8 DAY) AS not_contagion_day,
@@ -101,7 +101,7 @@ CREATE VIEW  vw_contagion_cases AS
 SELECT
     DISTINCT
         PE.user_id AS id,
-        CA.id AS case_id,
+        CA.id AS cases_id,
         CA.date AS firsts_day,
         DATE_ADD(CS.date, INTERVAL 4 DAY) AS infectious_day,
         DATE_ADD(CS.date,INTERVAL 6 DAY) AS symptom_day,
