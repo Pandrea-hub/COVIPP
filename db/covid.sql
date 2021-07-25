@@ -116,7 +116,7 @@ WHERE CA.contagion_type_id = 2
 
 
 
-CREATE VIEW vw_case_by_person AS
+CREATE VIEW vw_cases_by_person_and_case AS
 SELECT
     DISTINCT
         CS.id AS id,

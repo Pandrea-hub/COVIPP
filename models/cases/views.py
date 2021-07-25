@@ -36,6 +36,19 @@ class CasesByPerson(generics.ListCreateAPIView):
             return Cases.objects.filter(person=person_id).distinct()
 
 
+class CasesByPersonAndCase(generics.ListCreateAPIView):
+    queryset = Cases.objects.all()
+    serializer_class = CasesSerializer
+
+    def get_queryset(self):
+        person_id = self.kwargs['person_id']
+        if 'cases_id' in self.kwargs:
+            cases_id = self.kwargs['cases_id']
+            return Cases.objects.filter(person=person_id, pk=cases_id).distinct()
+        else:
+            return Cases.objects.filter(person=person_id).distinct()
+
+
 class CasesByContagionType(generics.ListCreateAPIView):  # Crea un JOIN entre cases y contagion type
     queryset = Cases.objects.all()
     serializer_class = CasesSerializer

@@ -1,6 +1,8 @@
 from .models import Cases, CasesSymptomView, CasesContagionView
 from rest_framework import serializers
 
+from .views import CasesByPersonAndCase
+
 
 class CasesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -43,3 +45,11 @@ class CasesByContagionSerializer(serializers.ModelSerializer):
             'last_name'
         )
 
+class CasesByPersonAndCase(serializers.ModelSerializer):
+    class Meta:
+        model = CasesByPersonAndCase
+        fields = (
+            'id',
+            'person_id',
+            'contagion_type'
+        )
