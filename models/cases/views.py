@@ -27,9 +27,9 @@ class CaseContagionByPersonAndCase(generics.ListCreateAPIView):
         person_id = self.kwargs['person_id']
         if 'cases_id' in self.kwargs:
             cases_id = self.kwargs['cases_id']
-            return Cases.objects.filter(person=person_id, pk=cases_id).distinct()
+            return CasesContagionView.objects.filter(id=person_id, cases_id=cases_id).distinct()
         else:
-            return Cases.objects.filter(person=person_id).distinct()
+            return CasesContagionView.objects.filter(id=person_id).distinct()
 
 class CaseSymptomByPersonAndCase(generics.ListCreateAPIView):
     serializer_class = CasesBySymptomSerializer
@@ -38,9 +38,9 @@ class CaseSymptomByPersonAndCase(generics.ListCreateAPIView):
         person_id = self.kwargs['person_id']
         if 'cases_id' in self.kwargs:
             cases_id = self.kwargs['cases_id']
-            return Cases.objects.filter(person=person_id, pk=cases_id).distinct()
+            return CasesSymptomView.objects.filter(id=person_id, cases_id=cases_id).distinct()
         else:
-            return Cases.objects.filter(person=person_id).distinct()
+            return CasesSymptomView.objects.filter(id=person_id).distinct()
 
 
 class CasesByPerson(generics.ListCreateAPIView):

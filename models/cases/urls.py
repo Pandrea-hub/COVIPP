@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^person/(?P<person_id>.+)/contagioncases/$', CasesByContagion.as_view(), name='casesbycontagion'),
     url(r'^person/(?P<person_id>.+)/cases/(?P<cases_id>.+)/case/$', CasesByPersonAndCase.as_view(), name='casesbypersonandvcase'),
     url(r'^person/(?P<person_id>.+)/cases/(?P<cases_id>.+)/contagion/$', CaseContagionByPersonAndCase.as_view(), name= 'casecontagionbypersonandcase'),
-url(r'^person/(?P<person_id>.+)/cases/(?P<cases_id>.+)/symptom/$', CaseSymptomByPersonAndCase.as_view(), name= 'casecontagionbypersonandcase')
+    url(r'^person/(?P<person_id>.+)/cases/(?P<cases_id>.+)/symptom/$', CaseSymptomByPersonAndCase.as_view(), name= 'casecontagionbypersonandcase')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
