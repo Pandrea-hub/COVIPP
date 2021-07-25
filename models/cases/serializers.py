@@ -19,7 +19,7 @@ class CasesBySymptomSerializer(serializers.ModelSerializer):
         model = CasesSymptomView
         fields = (
             'id',
-            'case_id',
+            'cases_id',
             'first_day',
             'contagion_day',
             'not_contagion_day',
@@ -34,7 +34,7 @@ class CasesByContagionSerializer(serializers.ModelSerializer):
         model = CasesContagionView
         fields = (
             'id',
-            'case_id',
+            'cases_id',
             'firsts_day',
             'infectious_day',
             'symptom_day',

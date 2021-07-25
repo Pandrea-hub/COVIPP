@@ -16,7 +16,7 @@ class Cases(models.Model):
 
 
 class CasesSymptomView(models.Model):
-    case_id = models.IntegerField()
+    cases_id = models.IntegerField()
     first_day = models.CharField(max_length=60, default=None)
     contagion_day = models.CharField(max_length=60, default=None)
     not_contagion_day = models.CharField(max_length=60, default=None)
@@ -37,7 +37,7 @@ class CasesSymptomView(models.Model):
 
 
 class CasesContagionView(models.Model):
-    case_id = models.IntegerField()
+    cases_id = models.IntegerField()
     firsts_day = models.CharField(max_length=50, default=None)
     infectious_day = models.CharField(max_length=50, default=None)
     symptom_day = models.CharField(max_length=50, default=None)
