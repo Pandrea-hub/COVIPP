@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from rest_framework import generics
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404
 from .models import Cases, CasesSymptomView, CasesContagionView
 from .serializers import CasesSerializer, CasesByContagionSerializer, CasesBySymptomSerializer
@@ -21,6 +19,9 @@ class CasesByContagion(generics.ListAPIView):
     def get_queryset(self):
         person_id = self.kwargs['person_id']
         return CasesContagionView.objects.filter(id=person_id).distinct()
+
+
+
 
 
 class CasesByPerson(generics.ListCreateAPIView):
@@ -54,6 +55,7 @@ class CasesByPersonAndCase(generics.ListCreateAPIView):
 
 
 
+
 class CasesByContagionType(generics.ListCreateAPIView):  # Crea un JOIN entre cases y contagion type
     queryset = Cases.objects.all()
     serializer_class = CasesSerializer
@@ -68,6 +70,17 @@ class CasesByContagionType(generics.ListCreateAPIView):  # Crea un JOIN entre ca
 
 
 
+class CaseContagionByPersonAndCase(generics.ListCreateAPIView):
+    queryset = Cases.objects.all()
+    serializer_class = CasesByContagionSerializer
+
+    def get_queryset(self):
+        person_id = self.kwargs['person_id']
+        if 'case_id' in self.kwargs:
+            case_id = self.kwargs['case_id']
+            return Cases.objects.filter(person=person_id,pk= case_id).distinct()
+        else:
+            return Cases.objects.filter(person=person_id).distinct()
 
 
 

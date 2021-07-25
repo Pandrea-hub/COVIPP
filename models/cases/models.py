@@ -14,19 +14,6 @@ class Cases(models.Model):
     class Meta:
         ordering = ('date',)
 
-"""
-class CasesByPersonAndCaseView(models.Model):
-    person_id = models.IntegerField()
-    contagion_type = models.IntegerField()
-    def __str__(self):
-        return '%s: %s' % (self.person_id, self.id)
-
-
-    class Meta:
-        managed = False
-        db_table = 'vw_cases_by_person_and_case'
-        ordering = ('id',)
-"""
 
 class CasesSymptomView(models.Model):
     case_id = models.IntegerField()
