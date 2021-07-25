@@ -20,8 +20,16 @@ class CasesByContagion(generics.ListAPIView):
         person_id = self.kwargs['person_id']
         return CasesContagionView.objects.filter(id=person_id).distinct()
 
+class CaseContagionByPersonAndCase(generics.ListCreateAPIView):
+    serializer_class = CasesByContagionSerializer
 
-
+    def get_queryset(self):
+        person_id = self.kwargs['person_id']
+        if 'cases_id' in self.kwargs:
+            cases_id = self.kwargs['cases_id']
+            return Cases.objects.filter(person=person_id, pk=cases_id).distinct()
+        else:
+            return Cases.objects.filter(person=person_id).distinct()
 
 
 class CasesByPerson(generics.ListCreateAPIView):
@@ -37,8 +45,6 @@ class CasesByPerson(generics.ListCreateAPIView):
             return Cases.objects.filter(person=person_id).distinct()
 
 
-
-
 class CasesByPersonAndCase(generics.ListCreateAPIView):
     queryset = Cases.objects.all()
     serializer_class = CasesSerializer
@@ -52,10 +58,6 @@ class CasesByPersonAndCase(generics.ListCreateAPIView):
             return Cases.objects.filter(person=person_id).distinct()
 
 
-
-
-
-
 class CasesByContagionType(generics.ListCreateAPIView):  # Crea un JOIN entre cases y contagion type
     queryset = Cases.objects.all()
     serializer_class = CasesSerializer
@@ -67,21 +69,6 @@ class CasesByContagionType(generics.ListCreateAPIView):  # Crea un JOIN entre ca
             return Cases.objects.filter(contagion_type=contagion_type_id, pk=cases_id).distinct()
         else:
             return Cases.objects.filter(contagion_type=contagion_type_id).distinct()
-
-
-
-class CaseContagionByPersonAndCase(generics.ListCreateAPIView):
-    queryset = Cases.objects.all()
-    serializer_class = CasesByContagionSerializer
-
-    def get_queryset(self):
-        person_id = self.kwargs['person_id']
-        if 'cases_id' in self.kwargs:
-            cases_id = self.kwargs['cases_id']
-            return Cases.objects.filter(person=person_id,pk= cases_id).distinct()
-        else:
-            return Cases.objects.filter(person=person_id).distinct()
-
 
 
 class CasesList(generics.ListCreateAPIView):  # GET AND POST
