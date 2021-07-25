@@ -1,4 +1,4 @@
-from .models import Cases, CasesSymptomView, CasesContagionView, CasesByPersonAndCaseView
+from .models import Cases, CasesSymptomView, CasesContagionView
 from rest_framework import serializers
 
 
