@@ -17,7 +17,7 @@ class Cases(models.Model):
 
 class CasesByPersonAndCaseView(models.Model):
     person_id = models.IntegerField()
-    contagion_type = models.IntegerField
+    contagion_type = models.IntegerField()
     def __str__(self):
         return '%s: %s' % (self.person_id, self.id)
 
