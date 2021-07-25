@@ -44,6 +44,8 @@ class CasesByContagionSerializer(serializers.ModelSerializer):
             'last_name'
         )
 
+
+"""
 class CasesByPersonAndCaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = CasesByPersonAndCaseView
@@ -52,3 +54,4 @@ class CasesByPersonAndCaseSerializer(serializers.ModelSerializer):
             'person_id',
             'contagion_type'
         )
+"""

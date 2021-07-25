@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^person/(?P<person_id>.+)/cases/$', CasesByPerson.as_view(), name='casesbyperson'),
     url(r'^person/(?P<person_id>.+)/symptomcases/$', CasesBySymptom.as_view(), name='casesbysymptom'),
     url(r'^person/(?P<person_id>.+)/contagioncases/$', CasesByContagion.as_view(), name='casesbycontagion'),
-    url(r'^person/(?P<person_id>.+)/casesbypersonandcase/(?P<cases_id>.+)/$', CasesByPersonAndCase.as_view(), name='casesbypersonandview')
+    url(r'^person/(?P<person_id>.+)/cases/(?P<cases_id>.+)/case/$', CasesByPersonAndCase.as_view(), name='casesbypersonandvcase')
 
 ]
 

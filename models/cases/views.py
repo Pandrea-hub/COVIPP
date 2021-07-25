@@ -41,7 +41,7 @@ class CasesByPerson(generics.ListCreateAPIView):
 
 class CasesByPersonAndCase(generics.ListCreateAPIView):
     queryset = Cases.objects.all()
-    serializer_class = CasesByPersonAndCaseSerializer
+    serializer_class = CasesSerializer
 
     def get_queryset(self):
         person_id = self.kwargs['person_id']
