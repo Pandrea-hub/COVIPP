@@ -17,8 +17,9 @@ class Cases(models.Model):
 
 class CasesSymptomView(models.Model):
     cases_id = models.IntegerField()
-    first_day = models.CharField(max_length=60, default=None)
+    symptom_day = models.CharField(max_length=60, default=None)
     contagion_day = models.CharField(max_length=60, default=None)
+    infectious_day = models.CharField(max_length=50, default=None)
     not_contagion_day = models.CharField(max_length=60, default=None)
     not_covid = models.CharField(max_length=60, default=None)
     first_name = models.CharField(max_length=50, default=None)
@@ -27,7 +28,7 @@ class CasesSymptomView(models.Model):
 
 
     def __str__(self):
-        return '%s: %s' % (self.first_name, self.first_day)
+        return '%s: %s' % (self.first_name, self.symptom_day)
 
 
     class Meta:
@@ -38,7 +39,7 @@ class CasesSymptomView(models.Model):
 
 class CasesContagionView(models.Model):
     cases_id = models.IntegerField()
-    firsts_day = models.CharField(max_length=50, default=None)
+    contagion_day = models.CharField(max_length=50, default=None)
     infectious_day = models.CharField(max_length=50, default=None)
     symptom_day = models.CharField(max_length=50, default=None)
     not_infectious_day = models.CharField(max_length=50, default=None)
@@ -47,10 +48,9 @@ class CasesContagionView(models.Model):
     last_name = models.CharField(max_length=50, default=None)
 
     def __str__(self):
-        return '%s: %s' % (self.first_name, self.firsts_day)
+        return '%s: %s' % (self.first_name, self.contagion_day)
 
     class Meta:
         managed = False
         db_table = 'vw_contagion_cases'
         ordering = ('id',)
-

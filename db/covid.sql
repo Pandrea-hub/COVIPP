@@ -82,10 +82,16 @@ SELECT
     DISTINCT
         PS.user_id AS id,
         CS.id AS cases_id,
-        CS.date AS first_day,
+        CS.date AS symptom_day,
         DATE_SUB(CS.date, INTERVAL 6 DAY) AS contagion_day,
+        DATE_SUB(CS.date, INTERVAL 2 DAY ) AS infectious_day,
         DATE_ADD(CS.date,INTERVAL 8 DAY) AS not_contagion_day,
         DATE_ADD(CS.date, INTERVAL 14 DAY) AS not_covid,
+        '#79BF7C' AS color_contagion,
+        '#C86F6F' AS color_infectious,
+        '#FF9800' AS color_not_infectious,
+        '#86A8E7' AS color_not_covid,
+        '#673AB7' AS color_symptom,
         US.first_name AS first_name,
         US.last_name AS last_name
 FROM cases_cases AS CS
@@ -94,33 +100,26 @@ FROM cases_cases AS CS
 WHERE CS.contagion_type_id = 1
 
 
-
-
-
 CREATE VIEW  vw_contagion_cases AS
 SELECT
     DISTINCT
         PE.user_id AS id,
         CA.id AS cases_id,
-        CA.date AS firsts_day,
-        DATE_ADD(CS.date, INTERVAL 4 DAY) AS infectious_day,
-        DATE_ADD(CS.date,INTERVAL 6 DAY) AS symptom_day,
-        DATE_ADD(CS.date, INTERVAL 13 DAY) AS not_infectious_day,
-        DATE_ADD(CS.date, INTERVAL 26 DAY) AS free_covid,
+        CA.date AS contagion_day,
+        DATE_ADD(CA.date, INTERVAL 4 DAY) AS infectious_day,
+        DATE_ADD(CA.date,INTERVAL 6 DAY) AS symptom_day,
+        DATE_ADD(CA.date, INTERVAL 13 DAY) AS not_infectious_day,
+        DATE_ADD(CA.date, INTERVAL 26 DAY) AS free_covid,
+        '#79BF7C' AS color_contagion,
+        '#C86F6F' AS color_infectious,
+        '#FF9800' AS color_not_infectious,
+        '#86A8E7' AS color_not_covid,
+        '#673AB7' AS color_symptom,
         UR.first_name AS first_name,
-        UR.last_name AS last_name,
+        UR.last_name AS last_name
 FROM cases_cases AS CA
     JOIN person_person AS PE ON PE.user_id = CA.person_id
     JOIN auth_user AS UR ON UR.id = PE.user_id
 WHERE CA.contagion_type_id = 2
 
 
-
-CREATE VIEW vw_cases_by_person_and_case AS
-SELECT
-    DISTINCT
-        CS.id AS id,
-        PN.user_id AS person_id,
-        CS.contagion_type_id AS contagion_type,
-FROM cases_cases AS CS
-    JOIN person_person AS PN ON PN.user_id = CS.person_id
