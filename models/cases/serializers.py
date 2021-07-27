@@ -25,11 +25,6 @@ class CasesBySymptomSerializer(serializers.ModelSerializer):
             'not_contagion_day',
             'infectious_day',
             'not_covid',
-            'color_contagion',
-            'color_infectious',
-            'color_not_infectious',
-            'color_not_covid',
-            'color_symptom',
             'first_name',
             'last_name'
         )
@@ -46,11 +41,6 @@ class CasesByContagionSerializer(serializers.ModelSerializer):
             'symptom_day',
             'free_covid',
             'not_infectious_day',
-            'color_contagion',
-            'color_infectious',
-            'color_not_infectious',
-            'color_not_covid',
-            'color_symptom',
             'first_name',
             'last_name'
         )

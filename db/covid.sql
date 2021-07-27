@@ -87,11 +87,6 @@ SELECT
         DATE_SUB(CS.date, INTERVAL 2 DAY ) AS infectious_day,
         DATE_ADD(CS.date,INTERVAL 8 DAY) AS not_contagion_day,
         DATE_ADD(CS.date, INTERVAL 14 DAY) AS not_covid,
-        '#79BF7C' AS color_contagion,
-        '#C86F6F' AS color_infectious,
-        '#FF9800' AS color_not_infectious,
-        '#86A8E7' AS color_not_covid,
-        '#673AB7' AS color_symptom,
         US.first_name AS first_name,
         US.last_name AS last_name
 FROM cases_cases AS CS
@@ -110,16 +105,10 @@ SELECT
         DATE_ADD(CA.date,INTERVAL 6 DAY) AS symptom_day,
         DATE_ADD(CA.date, INTERVAL 13 DAY) AS not_infectious_day,
         DATE_ADD(CA.date, INTERVAL 26 DAY) AS free_covid,
-        '#79BF7C' AS color_contagion,
-        '#C86F6F' AS color_infectious,
-        '#FF9800' AS color_not_infectious,
-        '#86A8E7' AS color_not_covid,
-        '#673AB7' AS color_symptom,
         UR.first_name AS first_name,
         UR.last_name AS last_name
 FROM cases_cases AS CA
     JOIN person_person AS PE ON PE.user_id = CA.person_id
     JOIN auth_user AS UR ON UR.id = PE.user_id
 WHERE CA.contagion_type_id = 2
-
 
