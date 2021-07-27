@@ -24,6 +24,12 @@ class CasesSymptomView(models.Model):
     not_covid = models.CharField(max_length=60, default=None)
     first_name = models.CharField(max_length=50, default=None)
     last_name = models.CharField(max_length=50, default=None)
+    color_contagion =models.CharField(max_length=50,default=None)
+    color_infectious=models.CharField(max_length=50,default=None)
+    color_not_infectious=models.CharField(max_length=50,default=None)
+    color_not_covid=models.CharField(max_length=50,default=None)
+    color_symptom =models.CharField(max_length=50,default=None)
+
 
 
 
@@ -43,9 +49,15 @@ class CasesContagionView(models.Model):
     infectious_day = models.CharField(max_length=50, default=None)
     symptom_day = models.CharField(max_length=50, default=None)
     not_infectious_day = models.CharField(max_length=50, default=None)
+    color_contagion =models.CharField(max_length=50,default=None)
+    color_infectious=models.CharField(max_length=50,default=None)
+    color_not_infectious=models.CharField(max_length=50,default=None)
+    color_not_covid=models.CharField(max_length=50,default=None)
+    color_symptom =models.CharField(max_length=50,default=None)
     free_covid = models.CharField(max_length=50, default=None)
     first_name = models.CharField(max_length=50, default=None)
     last_name = models.CharField(max_length=50, default=None)
+
 
     def __str__(self):
         return '%s: %s' % (self.first_name, self.contagion_day)
