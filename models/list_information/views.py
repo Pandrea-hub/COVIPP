@@ -27,7 +27,6 @@ class ListInformationDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ListInformationSerializer
 
 
-@permission_classes([AllowAny])
 class CompleteInformationListByUserView(generics.ListAPIView):  # GET
     queryset = ListInformation.objects.all()
     serializer_class = CompleteInformationListSerializer
@@ -42,7 +41,6 @@ class CompleteInformationListByUserView(generics.ListAPIView):  # GET
 
 
 
-@permission_classes([AllowAny])
 class CompleteInformationListView(generics.ListAPIView):  # GET
     serializer_class = CompleteInformationListSerializer
 
