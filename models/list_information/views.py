@@ -28,7 +28,7 @@ class ListInformationDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 @permission_classes([AllowAny])
-class CompleteInformationListView(generics.ListAPIView):  # GET
+class CompleteInformationListByUserView(generics.ListAPIView):  # GET
     queryset = ListInformation.objects.all()
     serializer_class = CompleteInformationListSerializer
 
@@ -38,3 +38,13 @@ class CompleteInformationListView(generics.ListAPIView):  # GET
             return CompleteInformationView.objects.filter(user_id=user_id).distinct()
         else:
             return CompleteInformationView.objects.all().distinct()
+
+
+
+
+@permission_classes([AllowAny])
+class CompleteInformationListView(generics.ListAPIView):  # GET
+    serializer_class = CompleteInformationListSerializer
+
+    def get_queryset(self):
+        return CompleteInformationView.objects.all().distinct()
