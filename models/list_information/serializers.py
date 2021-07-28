@@ -19,6 +19,7 @@ class CompleteInformationListSerializer(serializers.ModelSerializer):
         model = CompleteInformationView
         fields = (
             'id',
+            'user_id',
             'days',
             'first_dose_date',
             'second_dose_date',

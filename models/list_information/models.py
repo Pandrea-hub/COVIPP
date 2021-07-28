@@ -19,6 +19,7 @@ class ListInformation(models.Model):
 
 
 class CompleteInformationView(models.Model):
+    user_id = models.IntegerField()
     days = models.IntegerField()
     first_dose_date = models.CharField(max_length=100, default=None)
     second_dose_date = models.CharField(max_length=100, default=None)
