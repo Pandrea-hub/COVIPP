@@ -5,7 +5,7 @@ from models.list_information.views import ListInformationList, ListInformationDe
 urlpatterns = [
     url(r'^listinformation/$', ListInformationList.as_view(), name='listinformation'),
     url(r'^listinformation/(?P<pk>[0-9]+)/$', ListInformationDetail.as_view(), name='listinformation'),
-    url(r'^completelistinformation/(?P<user_id>.+)$/user/', CompleteInformationListView.as_view(), name='completelistinformation'),
+    url(r'^user/(?P<user_id>.+)/completelistinformation/$', CompleteInformationListView.as_view(), name='completelistinformation'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
